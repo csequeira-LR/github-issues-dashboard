@@ -217,7 +217,8 @@ def generate_html(issues, stats):
         }}
 
         .stat-card .label {{
-            font-size: 14px;
+            font-size: 18px;
+            font-weight: 700;
             color: rgba(255,255,255,0.9);
             text-transform: uppercase;
             letter-spacing: 1px;
