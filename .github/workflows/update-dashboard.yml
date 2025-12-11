@@ -39,7 +39,7 @@ jobs:
 
       - name: Generate dashboard
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           python3 generate_dashboard.py
 
