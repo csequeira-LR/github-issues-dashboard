@@ -33,7 +33,7 @@ def fetch_issues():
     """Fetch all issues authored by or assigned to the user"""
     print("Fetching issues authored by user...")
     authored = run_gh_command(
-        'gh search issues --author=@me --limit 1000 --json number,title,state,repository,createdAt,updatedAt,closedAt,url,assignees,labels,author'
+        'gh search issues --author=@me --limit 1000 --json number,title,state,repository,createdAt,updatedAt,closedAt,url,assignees,labels'
     )
 
     print("Fetching issues assigned to user...")
@@ -105,16 +105,6 @@ def generate_html(issues, stats):
             state_badge_class = 'badge-open' if state == 'open' else 'badge-closed'
             state_text = 'OPEN' if state == 'open' else 'CLOSED'
 
-            # Get author info
-            author = issue.get('author', {}).get('login', 'N/A') if issue.get('author') else username
-
-            # Get assignee info
-            assignees = issue.get('assignees', [])
-            if assignees:
-                assignee_names = ', '.join([a['login'] for a in assignees])
-            else:
-                assignee_names = 'Unassigned'
-
             labels_html = ""
             for label in issue.get('labels', []):
                 labels_html += f'<span class="label" style="background-color: #{label["color"]};">{label["name"]}</span> '
@@ -125,8 +115,6 @@ def generate_html(issues, stats):
                 <td class="issue-title"><a href="{url}" target="_blank" class="issue-link">{title}</a></td>
                 <td><span class="repo-badge">{repo}</span></td>
                 <td><span class="status-badge {state_badge_class}">{state_text}</span></td>
-                <td>{author}</td>
-                <td>{assignee_names}</td>
                 <td>{labels_html}</td>
                 <td>{created}</td>
                 <td>{updated}</td>
@@ -229,8 +217,7 @@ def generate_html(issues, stats):
         }}
 
         .stat-card .label {{
-            font-size: 18px;
-            font-weight: 700;
+            font-size: 14px;
             color: rgba(255,255,255,0.9);
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -343,16 +330,6 @@ def generate_html(issues, stats):
             border-bottom: 2px solid #4a5568;
             position: sticky;
             top: 0;
-        }}
-
-        th.sortable {{
-            cursor: pointer;
-            user-select: none;
-            transition: background 0.2s;
-        }}
-
-        th.sortable:hover {{
-            background: #1a2332;
         }}
 
         td {{
@@ -488,19 +465,17 @@ def generate_html(issues, stats):
                 <table>
                     <thead>
                         <tr>
-                            <th class="sortable" onclick="sortTable(this, 0, 'open')">Number ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 1, 'open')">Title ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 2, 'open')">Repository ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 3, 'open')">Status ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 4, 'open')">Author ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 5, 'open')">Assignee ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 6, 'open')">Labels ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 7, 'open')">Created ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 8, 'open')">Updated ▼</th>
+                            <th>Number</th>
+                            <th>Title</th>
+                            <th>Repository</th>
+                            <th>Status</th>
+                            <th>Labels</th>
+                            <th>Created</th>
+                            <th>Updated</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {open_issues_rows if open_issues_rows else '<tr><td colspan="9" class="empty-state"><h3>No open issues</h3></td></tr>'}
+                        {open_issues_rows if open_issues_rows else '<tr><td colspan="7" class="empty-state"><h3>No open issues</h3></td></tr>'}
                     </tbody>
                 </table>
             </div>
@@ -511,19 +486,17 @@ def generate_html(issues, stats):
                 <table>
                     <thead>
                         <tr>
-                            <th class="sortable" onclick="sortTable(this, 0, 'closed')">Number ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 1, 'closed')">Title ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 2, 'closed')">Repository ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 3, 'closed')">Status ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 4, 'closed')">Author ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 5, 'closed')">Assignee ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 6, 'closed')">Labels ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 7, 'closed')">Created ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 8, 'closed')">Updated ▼</th>
+                            <th>Number</th>
+                            <th>Title</th>
+                            <th>Repository</th>
+                            <th>Status</th>
+                            <th>Labels</th>
+                            <th>Created</th>
+                            <th>Updated</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {closed_issues_rows if closed_issues_rows else '<tr><td colspan="9" class="empty-state"><h3>No closed issues</h3></td></tr>'}
+                        {closed_issues_rows if closed_issues_rows else '<tr><td colspan="7" class="empty-state"><h3>No closed issues</h3></td></tr>'}
                     </tbody>
                 </table>
             </div>
@@ -534,19 +507,17 @@ def generate_html(issues, stats):
                 <table>
                     <thead>
                         <tr>
-                            <th class="sortable" onclick="sortTable(this, 0, 'all')">Number ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 1, 'all')">Title ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 2, 'all')">Repository ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 3, 'all')">Status ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 4, 'all')">Author ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 5, 'all')">Assignee ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 6, 'all')">Labels ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 7, 'all')">Created ▼</th>
-                            <th class="sortable" onclick="sortTable(this, 8, 'all')">Updated ▼</th>
+                            <th>Number</th>
+                            <th>Title</th>
+                            <th>Repository</th>
+                            <th>Status</th>
+                            <th>Labels</th>
+                            <th>Created</th>
+                            <th>Updated</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {all_issues_rows if all_issues_rows else '<tr><td colspan="9" class="empty-state"><h3>No issues</h3></td></tr>'}
+                        {all_issues_rows if all_issues_rows else '<tr><td colspan="7" class="empty-state"><h3>No issues</h3></td></tr>'}
                     </tbody>
                 </table>
             </div>
@@ -677,84 +648,6 @@ def generate_html(issues, stats):
             }} else if (tab === 'all') {{
                 document.getElementById('all-section').classList.add('active');
                 document.querySelector('.nav-btn.all-tab').classList.add('active');
-            }}
-        }}
-
-        // Table Sorting
-        let sortStates = {{}};
-
-        function sortTable(header, columnIndex, sectionId) {{
-            const sectionMap = {{
-                'open': 'open-section',
-                'closed': 'closed-section',
-                'all': 'all-section'
-            }};
-
-            const section = document.getElementById(sectionMap[sectionId]);
-            const table = section.querySelector('table');
-            const tbody = table.querySelector('tbody');
-            const rows = Array.from(tbody.querySelectorAll('tr'));
-
-            // Initialize sort state for this column if not exists
-            const sortKey = sectionId + '-' + columnIndex;
-            if (!sortStates[sortKey]) {{
-                sortStates[sortKey] = 'none';
-            }}
-
-            // Cycle through sort states: none -> asc -> desc -> none
-            if (sortStates[sortKey] === 'none') {{
-                sortStates[sortKey] = 'asc';
-            }} else if (sortStates[sortKey] === 'asc') {{
-                sortStates[sortKey] = 'desc';
-            }} else {{
-                sortStates[sortKey] = 'none';
-            }}
-
-            // Update all headers to show neutral state
-            const headers = table.querySelectorAll('th.sortable');
-            headers.forEach(h => {{
-                const text = h.textContent.replace(' ▲', '').replace(' ▼', '');
-                h.textContent = text + ' ▼';
-            }});
-
-            // Sort rows based on current state
-            if (sortStates[sortKey] !== 'none') {{
-                rows.sort((a, b) => {{
-                    let aValue = a.cells[columnIndex].textContent.trim();
-                    let bValue = b.cells[columnIndex].textContent.trim();
-
-                    // Handle numeric sorting for issue numbers
-                    if (columnIndex === 0) {{
-                        aValue = parseInt(aValue.replace('#', '')) || 0;
-                        bValue = parseInt(bValue.replace('#', '')) || 0;
-                    }}
-
-                    // Handle date sorting
-                    if (columnIndex === 7 || columnIndex === 8) {{
-                        aValue = new Date(aValue);
-                        bValue = new Date(bValue);
-                    }}
-
-                    if (aValue < bValue) return sortStates[sortKey] === 'asc' ? -1 : 1;
-                    if (aValue > bValue) return sortStates[sortKey] === 'asc' ? 1 : -1;
-                    return 0;
-                }});
-
-                // Update header indicator
-                const headerText = header.textContent.replace(' ▲', '').replace(' ▼', '');
-                header.textContent = headerText + (sortStates[sortKey] === 'asc' ? ' ▲' : ' ▼');
-
-                // Re-append sorted rows
-                rows.forEach(row => tbody.appendChild(row));
-            }} else {{
-                // Reset to default order (by created date, newest first)
-                rows.sort((a, b) => {{
-                    const aDate = new Date(a.cells[7].textContent.trim());
-                    const bDate = new Date(b.cells[7].textContent.trim());
-                    return bDate - aDate;
-                }});
-
-                rows.forEach(row => tbody.appendChild(row));
             }}
         }}
     </script>

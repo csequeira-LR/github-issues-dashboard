@@ -202,6 +202,16 @@
             top: 0;
         }
 
+        th.sortable {
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s;
+        }
+
+        th.sortable:hover {
+            background: #1a2332;
+        }
+
         td {
             padding: 15px;
             border-bottom: 1px solid #2d3748;
@@ -290,7 +300,7 @@
         <div class="header">
             <h1>✏️ csequeira-LR's Issues Dashboard</h1>
             <div class="subtitle">GitHub Issues - Automated Tracking</div>
-            <div class="last-updated">Last updated: 2025-12-12 01:18:33 EST</div>
+            <div class="last-updated">Last updated: 2025-12-12 01:24:37 EST</div>
         </div>
 
         <div class="stats">
@@ -335,13 +345,15 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Number</th>
-                            <th>Title</th>
-                            <th>Repository</th>
-                            <th>Status</th>
-                            <th>Labels</th>
-                            <th>Created</th>
-                            <th>Updated</th>
+                            <th class="sortable" onclick="sortTable(this, 0, 'open')">Number ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 1, 'open')">Title ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 2, 'open')">Repository ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 3, 'open')">Status ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 4, 'open')">Author ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 5, 'open')">Assignee ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 6, 'open')">Labels ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 7, 'open')">Created ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 8, 'open')">Updated ▼</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -351,6 +363,8 @@
                 <td class="issue-title"><a href="https://github.com/lightriversoftware/netflex/issues/610" target="_blank" class="issue-link">[SUPPORT] Tl1 North Bound Interface (NBI) documentaion</a></td>
                 <td><span class="repo-badge">lightriversoftware/netflex</span></td>
                 <td><span class="status-badge badge-open">OPEN</span></td>
+                <td>csequeira-LR</td>
+                <td>tlesser-LR</td>
                 <td><span class="label" style="background-color: #0075ca;">documentation</span> </td>
                 <td>2025-12-11</td>
                 <td>2025-12-11</td>
@@ -361,6 +375,8 @@
                 <td class="issue-title"><a href="https://github.com/lightriversoftware/netflex/issues/609" target="_blank" class="issue-link">[SUPPORT] Lumen would like Prometheus nF features for 5.3.0 documented</a></td>
                 <td><span class="repo-badge">lightriversoftware/netflex</span></td>
                 <td><span class="status-badge badge-open">OPEN</span></td>
+                <td>csequeira-LR</td>
+                <td>tlesser-LR</td>
                 <td><span class="label" style="background-color: #0075ca;">documentation</span> </td>
                 <td>2025-12-11</td>
                 <td>2025-12-11</td>
@@ -371,6 +387,8 @@
                 <td class="issue-title"><a href="https://github.com/lightriversoftware/netflex/issues/608" target="_blank" class="issue-link">[SUPPORT] Update Knowledge Base>Release notes>Supported NEs : Infinera GX G42 w/r6.1.1</a></td>
                 <td><span class="repo-badge">lightriversoftware/netflex</span></td>
                 <td><span class="status-badge badge-open">OPEN</span></td>
+                <td>csequeira-LR</td>
+                <td>tlesser-LR</td>
                 <td><span class="label" style="background-color: #0075ca;">documentation</span> </td>
                 <td>2025-12-11</td>
                 <td>2025-12-11</td>
@@ -381,6 +399,8 @@
                 <td class="issue-title"><a href="https://github.com/lightriversoftware/netflex/issues/586" target="_blank" class="issue-link">[SUPPORT] LUMEN NGO: GUI Logout</a></td>
                 <td><span class="repo-badge">lightriversoftware/netflex</span></td>
                 <td><span class="status-badge badge-open">OPEN</span></td>
+                <td>csequeira-LR</td>
+                <td>Unassigned</td>
                 <td><span class="label" style="background-color: #d73a4a;">bug</span> </td>
                 <td>2025-12-10</td>
                 <td>2025-12-10</td>
@@ -391,6 +411,8 @@
                 <td class="issue-title"><a href="https://github.com/lightriversoftware/netflex/issues/555" target="_blank" class="issue-link">[SUPPORT] WS5 WL6e Sled xcvr mode change 400GBE->4x100GBE, reword the pop-up sent upon a successfull update</a></td>
                 <td><span class="repo-badge">lightriversoftware/netflex</span></td>
                 <td><span class="status-badge badge-open">OPEN</span></td>
+                <td>csequeira-LR</td>
+                <td>Unassigned</td>
                 <td><span class="label" style="background-color: #d73a4a;">bug</span> </td>
                 <td>2025-12-09</td>
                 <td>2025-12-09</td>
@@ -406,13 +428,15 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Number</th>
-                            <th>Title</th>
-                            <th>Repository</th>
-                            <th>Status</th>
-                            <th>Labels</th>
-                            <th>Created</th>
-                            <th>Updated</th>
+                            <th class="sortable" onclick="sortTable(this, 0, 'closed')">Number ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 1, 'closed')">Title ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 2, 'closed')">Repository ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 3, 'closed')">Status ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 4, 'closed')">Author ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 5, 'closed')">Assignee ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 6, 'closed')">Labels ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 7, 'closed')">Created ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 8, 'closed')">Updated ▼</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -422,6 +446,8 @@
                 <td class="issue-title"><a href="https://github.com/lightriversoftware/netflex/issues/517" target="_blank" class="issue-link">[SUPPORT] Multibox md wtr procs should remove lostconn file on startup</a></td>
                 <td><span class="repo-badge">lightriversoftware/netflex</span></td>
                 <td><span class="status-badge badge-closed">CLOSED</span></td>
+                <td>csequeira-LR</td>
+                <td>Unassigned</td>
                 <td><span class="label" style="background-color: #d73a4a;">bug</span> </td>
                 <td>2025-12-09</td>
                 <td>2025-12-09</td>
@@ -432,6 +458,8 @@
                 <td class="issue-title"><a href="https://github.com/lightriversoftware/product/issues/113" target="_blank" class="issue-link">[8] Enh Req from Customer A to get Apples from and Orange Tree</a></td>
                 <td><span class="repo-badge">lightriversoftware/product</span></td>
                 <td><span class="status-badge badge-closed">CLOSED</span></td>
+                <td>csequeira-LR</td>
+                <td>Unassigned</td>
                 <td></td>
                 <td>2025-12-02</td>
                 <td>2025-12-11</td>
@@ -442,6 +470,8 @@
                 <td class="issue-title"><a href="https://github.com/lightriversoftware/netflex-workflow-testing/issues/5" target="_blank" class="issue-link">[SUPPORT] netFLEX is BrOkE. Pls Fix</a></td>
                 <td><span class="repo-badge">lightriversoftware/netflex-workflow-testing</span></td>
                 <td><span class="status-badge badge-closed">CLOSED</span></td>
+                <td>csequeira-LR</td>
+                <td>Unassigned</td>
                 <td><span class="label" style="background-color: #d73a4a;">bug</span> </td>
                 <td>2025-12-02</td>
                 <td>2025-12-10</td>
@@ -457,13 +487,15 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Number</th>
-                            <th>Title</th>
-                            <th>Repository</th>
-                            <th>Status</th>
-                            <th>Labels</th>
-                            <th>Created</th>
-                            <th>Updated</th>
+                            <th class="sortable" onclick="sortTable(this, 0, 'all')">Number ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 1, 'all')">Title ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 2, 'all')">Repository ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 3, 'all')">Status ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 4, 'all')">Author ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 5, 'all')">Assignee ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 6, 'all')">Labels ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 7, 'all')">Created ▼</th>
+                            <th class="sortable" onclick="sortTable(this, 8, 'all')">Updated ▼</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -473,6 +505,8 @@
                 <td class="issue-title"><a href="https://github.com/lightriversoftware/netflex/issues/610" target="_blank" class="issue-link">[SUPPORT] Tl1 North Bound Interface (NBI) documentaion</a></td>
                 <td><span class="repo-badge">lightriversoftware/netflex</span></td>
                 <td><span class="status-badge badge-open">OPEN</span></td>
+                <td>csequeira-LR</td>
+                <td>tlesser-LR</td>
                 <td><span class="label" style="background-color: #0075ca;">documentation</span> </td>
                 <td>2025-12-11</td>
                 <td>2025-12-11</td>
@@ -483,6 +517,8 @@
                 <td class="issue-title"><a href="https://github.com/lightriversoftware/netflex/issues/609" target="_blank" class="issue-link">[SUPPORT] Lumen would like Prometheus nF features for 5.3.0 documented</a></td>
                 <td><span class="repo-badge">lightriversoftware/netflex</span></td>
                 <td><span class="status-badge badge-open">OPEN</span></td>
+                <td>csequeira-LR</td>
+                <td>tlesser-LR</td>
                 <td><span class="label" style="background-color: #0075ca;">documentation</span> </td>
                 <td>2025-12-11</td>
                 <td>2025-12-11</td>
@@ -493,6 +529,8 @@
                 <td class="issue-title"><a href="https://github.com/lightriversoftware/netflex/issues/608" target="_blank" class="issue-link">[SUPPORT] Update Knowledge Base>Release notes>Supported NEs : Infinera GX G42 w/r6.1.1</a></td>
                 <td><span class="repo-badge">lightriversoftware/netflex</span></td>
                 <td><span class="status-badge badge-open">OPEN</span></td>
+                <td>csequeira-LR</td>
+                <td>tlesser-LR</td>
                 <td><span class="label" style="background-color: #0075ca;">documentation</span> </td>
                 <td>2025-12-11</td>
                 <td>2025-12-11</td>
@@ -503,6 +541,8 @@
                 <td class="issue-title"><a href="https://github.com/lightriversoftware/netflex/issues/586" target="_blank" class="issue-link">[SUPPORT] LUMEN NGO: GUI Logout</a></td>
                 <td><span class="repo-badge">lightriversoftware/netflex</span></td>
                 <td><span class="status-badge badge-open">OPEN</span></td>
+                <td>csequeira-LR</td>
+                <td>Unassigned</td>
                 <td><span class="label" style="background-color: #d73a4a;">bug</span> </td>
                 <td>2025-12-10</td>
                 <td>2025-12-10</td>
@@ -513,6 +553,8 @@
                 <td class="issue-title"><a href="https://github.com/lightriversoftware/netflex/issues/555" target="_blank" class="issue-link">[SUPPORT] WS5 WL6e Sled xcvr mode change 400GBE->4x100GBE, reword the pop-up sent upon a successfull update</a></td>
                 <td><span class="repo-badge">lightriversoftware/netflex</span></td>
                 <td><span class="status-badge badge-open">OPEN</span></td>
+                <td>csequeira-LR</td>
+                <td>Unassigned</td>
                 <td><span class="label" style="background-color: #d73a4a;">bug</span> </td>
                 <td>2025-12-09</td>
                 <td>2025-12-09</td>
@@ -523,6 +565,8 @@
                 <td class="issue-title"><a href="https://github.com/lightriversoftware/netflex/issues/517" target="_blank" class="issue-link">[SUPPORT] Multibox md wtr procs should remove lostconn file on startup</a></td>
                 <td><span class="repo-badge">lightriversoftware/netflex</span></td>
                 <td><span class="status-badge badge-closed">CLOSED</span></td>
+                <td>csequeira-LR</td>
+                <td>Unassigned</td>
                 <td><span class="label" style="background-color: #d73a4a;">bug</span> </td>
                 <td>2025-12-09</td>
                 <td>2025-12-09</td>
@@ -533,6 +577,8 @@
                 <td class="issue-title"><a href="https://github.com/lightriversoftware/product/issues/113" target="_blank" class="issue-link">[8] Enh Req from Customer A to get Apples from and Orange Tree</a></td>
                 <td><span class="repo-badge">lightriversoftware/product</span></td>
                 <td><span class="status-badge badge-closed">CLOSED</span></td>
+                <td>csequeira-LR</td>
+                <td>Unassigned</td>
                 <td></td>
                 <td>2025-12-02</td>
                 <td>2025-12-11</td>
@@ -543,6 +589,8 @@
                 <td class="issue-title"><a href="https://github.com/lightriversoftware/netflex-workflow-testing/issues/5" target="_blank" class="issue-link">[SUPPORT] netFLEX is BrOkE. Pls Fix</a></td>
                 <td><span class="repo-badge">lightriversoftware/netflex-workflow-testing</span></td>
                 <td><span class="status-badge badge-closed">CLOSED</span></td>
+                <td>csequeira-LR</td>
+                <td>Unassigned</td>
                 <td><span class="label" style="background-color: #d73a4a;">bug</span> </td>
                 <td>2025-12-02</td>
                 <td>2025-12-10</td>
@@ -678,6 +726,84 @@
             } else if (tab === 'all') {
                 document.getElementById('all-section').classList.add('active');
                 document.querySelector('.nav-btn.all-tab').classList.add('active');
+            }
+        }
+
+        // Table Sorting
+        let sortStates = {};
+
+        function sortTable(header, columnIndex, sectionId) {
+            const sectionMap = {
+                'open': 'open-section',
+                'closed': 'closed-section',
+                'all': 'all-section'
+            };
+
+            const section = document.getElementById(sectionMap[sectionId]);
+            const table = section.querySelector('table');
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+
+            // Initialize sort state for this column if not exists
+            const sortKey = sectionId + '-' + columnIndex;
+            if (!sortStates[sortKey]) {
+                sortStates[sortKey] = 'none';
+            }
+
+            // Cycle through sort states: none -> asc -> desc -> none
+            if (sortStates[sortKey] === 'none') {
+                sortStates[sortKey] = 'asc';
+            } else if (sortStates[sortKey] === 'asc') {
+                sortStates[sortKey] = 'desc';
+            } else {
+                sortStates[sortKey] = 'none';
+            }
+
+            // Update all headers to show neutral state
+            const headers = table.querySelectorAll('th.sortable');
+            headers.forEach(h => {
+                const text = h.textContent.replace(' ▲', '').replace(' ▼', '');
+                h.textContent = text + ' ▼';
+            });
+
+            // Sort rows based on current state
+            if (sortStates[sortKey] !== 'none') {
+                rows.sort((a, b) => {
+                    let aValue = a.cells[columnIndex].textContent.trim();
+                    let bValue = b.cells[columnIndex].textContent.trim();
+
+                    // Handle numeric sorting for issue numbers
+                    if (columnIndex === 0) {
+                        aValue = parseInt(aValue.replace('#', '')) || 0;
+                        bValue = parseInt(bValue.replace('#', '')) || 0;
+                    }
+
+                    // Handle date sorting
+                    if (columnIndex === 7 || columnIndex === 8) {
+                        aValue = new Date(aValue);
+                        bValue = new Date(bValue);
+                    }
+
+                    if (aValue < bValue) return sortStates[sortKey] === 'asc' ? -1 : 1;
+                    if (aValue > bValue) return sortStates[sortKey] === 'asc' ? 1 : -1;
+                    return 0;
+                });
+
+                // Update header indicator
+                const headerText = header.textContent.replace(' ▲', '').replace(' ▼', '');
+                header.textContent = headerText + (sortStates[sortKey] === 'asc' ? ' ▲' : ' ▼');
+
+                // Re-append sorted rows
+                rows.forEach(row => tbody.appendChild(row));
+            } else {
+                // Reset to default order (by created date, newest first)
+                rows.sort((a, b) => {
+                    const aDate = new Date(a.cells[7].textContent.trim());
+                    const bDate = new Date(b.cells[7].textContent.trim());
+                    return bDate - aDate;
+                });
+
+                rows.forEach(row => tbody.appendChild(row));
             }
         }
     </script>
