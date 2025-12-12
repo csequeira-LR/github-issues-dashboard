@@ -26,6 +26,9 @@ A professional GitHub Issues Dashboard with dark mode theme, auto-updates, and i
 ✅ Auto-updates every 30 minutes via GitHub Actions
 ✅ Manual trigger capability from Actions tab
 ✅ Responsive design for all devices
+✅ **Sortable table columns** - Click any column header to sort (ascending/descending/default)
+✅ **Author column** - Shows who created each issue
+✅ **Assignee column** - Shows who's assigned to each issue (or "Unassigned")
 
 ### How to Update Dashboard
 
@@ -49,10 +52,49 @@ git push
 3. Click "Run workflow"
 4. Wait 1-2 minutes for GitHub Pages to rebuild
 
+### Table Features & Usage
+
+#### Column Structure
+The dashboard displays issues with the following columns:
+1. **Number** - Issue number with clickable link
+2. **Title** - Issue title with clickable link
+3. **Repository** - Repository name (owner/repo format)
+4. **Status** - Open or Closed badge
+5. **Author** - Username of who created the issue
+6. **Assignee** - Username(s) of who's assigned (or "Unassigned")
+7. **Labels** - Colored labels from the issue
+8. **Created** - Date issue was created (YYYY-MM-DD)
+9. **Updated** - Date issue was last updated (YYYY-MM-DD)
+
+#### Sorting Functionality
+All column headers are clickable and sortable:
+
+**How to Sort:**
+- **First click**: Sort ascending (A→Z, or oldest→newest for dates) - Shows ▲
+- **Second click**: Sort descending (Z→A, or newest→oldest for dates) - Shows ▼
+- **Third click**: Reset to default order (by created date, newest first) - Shows ▼
+
+**Sorting Behavior:**
+- **Number column**: Numeric sorting (properly handles #123 format)
+- **Text columns** (Title, Repository, Author, Assignee, Labels): Alphabetical sorting
+- **Date columns** (Created, Updated): Chronological sorting
+- Each tab (Open, Closed, All) maintains independent sort states
+- Visual indicators (▲/▼) show current sort direction
+
+**Tip**: Hover over column headers to see the hover effect indicating they're clickable
+
+#### Data Fetching
+Issues are fetched using GitHub CLI with the following criteria:
+- All issues where you are the **author** (`--author=@me`)
+- All issues where you are **assigned** (`--assignee=@me`)
+- Includes author information for both sets
+- Deduplicates issues that match both criteria
+- Limit: 1000 issues per query
+
 ### Customization Reference
 
-#### Stat Card Label Styling (Lines 219-225)
-Location: `generate_dashboard.py` line ~220
+#### Stat Card Label Styling
+Location: `generate_dashboard.py` line ~230
 
 ```css
 .stat-card .label {
@@ -64,11 +106,40 @@ Location: `generate_dashboard.py` line ~220
 }
 ```
 
+#### Table Sorting Styles
+Location: `generate_dashboard.py` lines ~348-356
+
+```css
+th.sortable {
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+}
+
+th.sortable:hover {
+    background: #1a2332;
+}
+```
+
 #### Other Customizable Elements
-- **Background color**: Line 148 - `background: #1a1a2e;`
-- **Stat card colors**: Lines 200-210 (gradients for pink, cyan, green)
-- **Chart colors**: Lines 540-542 (pie chart) and 589 (bar chart)
-- **Title**: Line 421 - Change "✏️" emoji or text
+- **Background color**: Line ~148 - `background: #1a1a2e;`
+- **Stat card colors**: Lines ~200-210 (gradients for pink, cyan, green)
+- **Chart colors**: Lines ~560-562 (pie chart) and ~609 (bar chart)
+- **Title**: Line ~438 - Change "✏️" emoji or text
+- **Sortable columns**: Lines ~348-356 (hover effects and cursor styles)
+
+#### Implementation Details
+
+**Author/Assignee Extraction** (Lines 108-116):
+- Extracts author from issue data or defaults to username
+- Handles multiple assignees with comma-separated list
+- Shows "Unassigned" when no assignees
+
+**Sorting JavaScript** (Lines 683-759):
+- `sortTable()` function handles all column sorting
+- Maintains independent sort states per tab
+- Smart sorting: numeric for numbers, date for dates, alphabetical for text
+- Three-state cycle: none → ascending → descending → none
 
 ### Important Notes
 - Dashboard fetches ALL issues you authored OR are assigned to
@@ -142,10 +213,32 @@ We initially created a local dashboard with Flask server:
 5. Test locally: `python3 generate_dashboard.py`
 6. Push to GitHub when ready
 
+### Recent Updates
+
+#### December 11, 2025 - Sortable Columns & Author/Assignee Features
+- Added sortable functionality to all table columns
+- Added Author column to show issue creator
+- Added Assignee column to show who's assigned
+- Updated data fetching to include author information
+- Implemented three-state sorting (ascending/descending/default)
+- Added visual indicators (▲/▼) for sort direction
+- Added hover effects on column headers
+- Independent sort states per tab (Open, Closed, All)
+
+**Commit**: `a94d64f` - "Add sortable columns and Author/Assignee fields to dashboard"
+
+#### December 11, 2025 - GitHub Actions Fixes
+- Fixed authentication error by removing redundant `gh auth login` step
+- Added `contents: write` permission for workflow to push changes
+- Switched from `GITHUB_TOKEN` to `GH_PAT` (Personal Access Token) to fetch correct issues
+- Dashboard now correctly shows only user's authored/assigned issues
+
+**Commits**: `1c3b2dc`, `89d8a4e`, `07c0d2f`
+
 ### Claude Code Session Recovery
 - Use `/rewind` or press `Esc` twice to access conversation checkpoints
 - This conversation is automatically saved for 30 days
 - Project notes saved in this file for reference
 
 ---
-Last updated: December 11, 2025
+Last updated: December 11, 2025 (Sortable columns & Author/Assignee features)
