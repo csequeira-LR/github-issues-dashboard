@@ -300,16 +300,16 @@
         <div class="header">
             <h1>✏️ csequeira-LR's Issues Dashboard</h1>
             <div class="subtitle">GitHub Issues - Automated Tracking</div>
-            <div class="last-updated">Last updated: 2026-03-04 23:33:00 EST</div>
+            <div class="last-updated">Last updated: 2026-03-05 01:46:54 EST</div>
         </div>
 
         <div class="stats">
             <div class="stat-card total">
-                <div class="number">41</div>
+                <div class="number">42</div>
                 <div class="label">Total Issues</div>
             </div>
             <div class="stat-card open">
-                <div class="number">3</div>
+                <div class="number">4</div>
                 <div class="label">Open Issues</div>
             </div>
             <div class="stat-card closed">
@@ -358,6 +358,18 @@
                     </thead>
                     <tbody>
                         
+            <tr>
+                <td><a href="https://github.com/lightriversoftware/netflex/issues/2416" target="_blank" class="issue-link">#2416</a></td>
+                <td class="issue-title"><a href="https://github.com/lightriversoftware/netflex/issues/2416" target="_blank" class="issue-link">[SUPPORT] Please update ws netconf subscripton filter and move chassis to last item in subtree filter</a></td>
+                <td><span class="repo-badge">lightriversoftware/netflex</span></td>
+                <td><span class="status-badge badge-open">OPEN</span></td>
+                <td>csequeira-LR</td>
+                <td>Unassigned</td>
+                <td><span class="label" style="background-color: #d73a4a;">bug</span> </td>
+                <td>2026-03-05</td>
+                <td>2026-03-05</td>
+            </tr>
+            
             <tr>
                 <td><a href="https://github.com/lightriversoftware/netflex/issues/2044" target="_blank" class="issue-link">#2044</a></td>
                 <td class="issue-title"><a href="https://github.com/lightriversoftware/netflex/issues/2044" target="_blank" class="issue-link">[QA][Lumen - ODC Level Support for Waveserver 5 r3.2.01 mainly regression testing]QA Testing [#2043]</a></td>
@@ -426,7 +438,7 @@
                 <td>gralston-LR, csequeira-LR</td>
                 <td><span class="label" style="background-color: #d73a4a;">bug</span> </td>
                 <td>2026-02-27</td>
-                <td>2026-03-04</td>
+                <td>2026-03-05</td>
             </tr>
             
             <tr>
@@ -897,6 +909,18 @@
                     <tbody>
                         
             <tr>
+                <td><a href="https://github.com/lightriversoftware/netflex/issues/2416" target="_blank" class="issue-link">#2416</a></td>
+                <td class="issue-title"><a href="https://github.com/lightriversoftware/netflex/issues/2416" target="_blank" class="issue-link">[SUPPORT] Please update ws netconf subscripton filter and move chassis to last item in subtree filter</a></td>
+                <td><span class="repo-badge">lightriversoftware/netflex</span></td>
+                <td><span class="status-badge badge-open">OPEN</span></td>
+                <td>csequeira-LR</td>
+                <td>Unassigned</td>
+                <td><span class="label" style="background-color: #d73a4a;">bug</span> </td>
+                <td>2026-03-05</td>
+                <td>2026-03-05</td>
+            </tr>
+            
+            <tr>
                 <td><a href="https://github.com/lightriversoftware/netflex/issues/2257" target="_blank" class="issue-link">#2257</a></td>
                 <td class="issue-title"><a href="https://github.com/lightriversoftware/netflex/issues/2257" target="_blank" class="issue-link">[SUPPORT] Request to move nfmetricd collection start from 10 min to 1 min past the hour</a></td>
                 <td><span class="repo-badge">lightriversoftware/netflex</span></td>
@@ -905,7 +929,7 @@
                 <td>gralston-LR, csequeira-LR</td>
                 <td><span class="label" style="background-color: #d73a4a;">bug</span> </td>
                 <td>2026-02-27</td>
-                <td>2026-03-04</td>
+                <td>2026-03-05</td>
             </tr>
             
             <tr>
@@ -1406,7 +1430,7 @@
             data: {
                 labels: ['Open', 'Closed'],
                 datasets: [{
-                    data: [3, 38],
+                    data: [4, 38],
                     backgroundColor: [
                         'rgba(79, 172, 254, 0.8)',
                         'rgba(118, 75, 162, 0.8)'
@@ -1437,7 +1461,7 @@
                             label: function(context) {
                                 const label = context.label || '';
                                 const value = context.parsed || 0;
-                                const total = 41;
+                                const total = 42;
                                 const percentage = ((value / total) * 100).toFixed(1);
                                 return label + ': ' + value + ' (' + percentage + '%)';
                             }
@@ -1452,10 +1476,10 @@
         new Chart(trendCtx, {
             type: 'bar',
             data: {
-                labels: ["2025-12", "2026-01", "2026-02"],
+                labels: ["2025-12", "2026-01", "2026-02", "2026-03"],
                 datasets: [{
                     label: 'Issues Created',
-                    data: [16, 13, 12],
+                    data: [16, 13, 12, 1],
                     backgroundColor: 'rgba(79, 172, 254, 0.7)',
                     borderColor: 'rgba(79, 172, 254, 1)',
                     borderWidth: 2,
